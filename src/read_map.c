@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   matvect.h                                          :+:      :+:    :+:   */
+/*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/23 08:59:44 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/23 09:03:18 by ggilaber         ###   ########.fr       */
+/*   Created: 2015/11/23 09:57:35 by ggilaber          #+#    #+#             */
+/*   Updated: 2015/11/23 10:04:25 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MATVECT_H
-# define MATVECT_H
+#include "raytracer.h"
 
-typedef struct		s_mat
+char	read_map(char *str)
 {
-}					t_mat;
-
-typedef struct		s_vect3
-{
-}					t_vect3;
-
-#endif
+	(void)str;
+	return (OK);
+}

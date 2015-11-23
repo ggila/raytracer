@@ -22,7 +22,9 @@ NAME = raytracer
 
 # Source
 C_DIR = src
-C_FILE = main.c
+C_FILE = main.c\
+		 read_map.c
+
 SRC = $(addprefix $(C_DIR)/, $(C_FILE))
 
 H_DIR = -I./inc -I./minilib_macos
@@ -44,12 +46,15 @@ FLAGS = -Wall -Wextra -Werror
 LIB = minilibx_macos/libmlx.a
 LIB_LINK = -L./minilibx_macos/ -lmlx
 
+FRAMEWORK = -framework OpenGL\
+			-framework AppKit
+
 all: $(NAME)
 
 $(NAME): $(OBJ) $(LIB)
-	$(CC) -o $@ $(OBJ) $(FLAGS)
+	$(CC) $(FLAGS) -o $@ $(LIB_LINK) $(OBJ) $(FRAMEWORK)
 
-$(O_DIR)/%.o : $(C_DIR)/%.c $(INC) | $(O_DIR)
+$(O_DIR)/%.o: $(C_DIR)/%.c $(INC) | $(O_DIR)
 	$(CC) $(FLAGS) $(H_DIR) -c $< -o $@
 
 $(O_DIR):
