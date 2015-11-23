@@ -6,7 +6,7 @@
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 08:14:45 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/23 12:15:31 by ggilaber         ###   ########.fr       */
+/*   Updated: 2015/11/23 19:20:07 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 static void	sincos(void)
 {
 	int		i;
-	double	ang;
-	double	inc;
+	float	ang;
+	float	inc;
 
 	i = -1;
 	ang = 0;

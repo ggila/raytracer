@@ -23,18 +23,35 @@ NAME = raytracer
 # Source
 C_DIR = src
 C_FILE = main.c\
-		 read_map.c
-
+			read_map.c\
+			matrix/add.c\
+			matrix/dot.c\
+			matrix/print.c\
+			matrix/rot.c\
+			matrix/trans.c\
+			lib/ft_bzero.c
 SRC = $(addprefix $(C_DIR)/, $(C_FILE))
 
 H_DIR = -I./inc -I./minilib_macos
 INC = inc/raytracer.h
 
+MATRIX_FILE = matrix/add.c\
+				matrix/dot.c\
+				matrix/print.c\
+				matrix/rot.c\
+				matrix/test.c\
+				matrix/trans.c\
+				lib/ft_bzero.c
+
+MATRIX = $(addprefix $(C_DIR)/, $(MATRIX_FILE))
 # Obj directory
 O_DIR = obj
 
 O_FILE = $(C_FILE:.c=.o)
 OBJ = $(addprefix $(O_DIR)/, $(O_FILE))
+
+O_MAT_FILE = $(MATRIX_FILE:.c=.o)
+OBJ_MAT = $(addprefix $(O_DIR)/, $(O_MAT_FILE))
 
 # C compiler
 CC = gcc
@@ -54,11 +71,14 @@ all: $(NAME)
 $(NAME): $(OBJ) $(LIB)
 	$(CC) $(FLAGS) -o $@ $(LIB_LINK) $(OBJ) $(FRAMEWORK)
 
+mat: $(OBJ_MAT)
+	$(CC) $(FLAGS) -o $@ $(OBJ_MAT)
+
 $(O_DIR)/%.o: $(C_DIR)/%.c $(INC) | $(O_DIR)
-	$(CC) $(FLAGS) $(H_DIR) -c $< -o $@
+	$(CC) $(FLAGS) $(H_DIR) -c $< -o  $@
 
 $(O_DIR):
-	mkdir -p $(O_DIR)
+	mkdir -p obj/matrix obj/lib
 
 $(LIB):
 	make -C minilibx_macos

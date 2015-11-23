@@ -6,7 +6,7 @@
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 08:16:01 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/23 09:56:16 by ggilaber         ###   ########.fr       */
+/*   Updated: 2015/11/23 20:23:54 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 # define RAYTRACER_H
 
 # include <math.h>
+# include <stdlib.h>
 # include "mlx_encoding.h"
 # include "mlx.h"
-# include "proto.h"
 
 # define OK 0
 # define KO 1
@@ -31,6 +31,9 @@
 # define X 0
 # define Y 1
 # define Z 2
+# define W 3
+
+# define MAT_SIZE (16 * sizeof(float))
 
 # define ABS(n) (((n) > 0) ? (n) : -(n))
 
@@ -53,20 +56,13 @@ typedef struct	s_env
 	t_img		img;
 }				t_env;
 
-typedef struct	s_mat
-{
-	double		mat[16];
-}				t_mat;
+typedef float	t_mat[4][4];
 
-typedef struct		s_vect3
-{
-	double	x;
-	double	y;
-	double	z;
-	double	w;
-}					t_vect3;
+typedef float	t_vect[4];
 
-double			g_cos[3600];
-double			g_sin[3600];
+float			g_cos[3600];
+float			g_sin[3600];
+
+# include "proto.h"
 
 #endif
