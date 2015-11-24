@@ -22,36 +22,45 @@ NAME = raytracer
 
 # Source
 C_DIR = src
-C_FILE = main.c\
-			read_map.c\
-			matrix/add.c\
-			matrix/dot.c\
-			matrix/print.c\
-			matrix/rot.c\
-			matrix/trans.c\
-			lib/ft_bzero.c
+
+LIB_FILE = lib/ft_bzero.c
+
+MATRIX_FILE = matrix/add.c\
+				matrix/dot_mat.c\
+				matrix/print.c\
+				matrix/rot.c\
+				matrix/trans.c
+
+VECTOR_FILE = vector/dot_vect.c\
+			  vector/new_vect.c\
+			  vector/vect_cpy.c\
+			  vector/print_vect.c
+
+OTHER_FILE = main.c\
+			read_map.c
+
+C_FILE = $(MATRIX_FILE) $(VECTOR_FILE) $(LIB_FILE) $(OTHER_FILE)
+C_MATRIX_TEST = $(MATRIX_FILE) $(LIB_FILE) matrix/test.c
+C_VECTOR_TEST = $(VECTOR_FILE) $(LIB_FILE) matrix/print.c vector/test.c
+
 SRC = $(addprefix $(C_DIR)/, $(C_FILE))
 
 H_DIR = -I./inc -I./minilib_macos
 INC = inc/raytracer.h
 
-MATRIX_FILE = matrix/add.c\
-				matrix/dot.c\
-				matrix/print.c\
-				matrix/rot.c\
-				matrix/test.c\
-				matrix/trans.c\
-				lib/ft_bzero.c
-
-MATRIX = $(addprefix $(C_DIR)/, $(MATRIX_FILE))
+MATRIX = $(addprefix $(C_DIR)/, $(C_MATRIX_TEST))
+VECTOR = $(addprefix $(C_DIR)/, $(C_VECTOR_TEST))
 # Obj directory
 O_DIR = obj
 
 O_FILE = $(C_FILE:.c=.o)
 OBJ = $(addprefix $(O_DIR)/, $(O_FILE))
 
-O_MAT_FILE = $(MATRIX_FILE:.c=.o)
+O_MAT_FILE = $(C_MATRIX_TEST:.c=.o)
 OBJ_MAT = $(addprefix $(O_DIR)/, $(O_MAT_FILE))
+
+O_VECT_FILE = $(C_VECTOR_TEST:.c=.o)
+OBJ_VECT = $(addprefix $(O_DIR)/, $(O_VECT_FILE))
 
 # C compiler
 CC = gcc
@@ -74,20 +83,26 @@ $(NAME): $(OBJ) $(LIB)
 mat: $(OBJ_MAT)
 	$(CC) $(FLAGS) -o $@ $(OBJ_MAT)
 
+vect: $(OBJ_VECT)
+	$(CC) $(FLAGS) -o $@ $(OBJ_VECT)
+
 $(O_DIR)/%.o: $(C_DIR)/%.c $(INC) | $(O_DIR)
 	$(CC) $(FLAGS) $(H_DIR) -c $< -o  $@
 
 $(O_DIR):
-	mkdir -p obj/matrix obj/lib
+	mkdir -p obj/matrix obj/lib obj/vector
 
 $(LIB):
 	make -C minilibx_macos
 
 clean:
 	rm -rf $(O_DIR)
+	make clean -C minilibx_macos
 
 fclean: clean
 	rm -f $(NAME)
-	make fclean -C minilibx_macos
+	rm -f mat
+	rm -f vect
+	make clean -C minilibx_macos
 
 re: fclean all

@@ -6,7 +6,7 @@
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 15:59:18 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/23 20:29:02 by ggilaber         ###   ########.fr       */
+/*   Updated: 2015/11/24 09:01:58 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void	rotalpha(float alpha, t_mat *mat)
 	(*mat)[Y][Z] = -sinf(alpha);
 	(*mat)[Z][Y] = sinf(alpha);
 	(*mat)[Z][Z] = cosf(alpha);
+	(*mat)[W][W] = 1.0f;
 }
 
 static void	rotbeta(float beta, t_mat *mat)
@@ -30,6 +31,7 @@ static void	rotbeta(float beta, t_mat *mat)
 	(*mat)[Z][X] = -sinf(beta);
 	(*mat)[X][Z] = sinf(beta);
 	(*mat)[Z][Z] = cosf(beta);
+	(*mat)[W][W] = 1.0f;
 }
 
 static void	rotgamma(float gamma, t_mat *mat)
@@ -40,6 +42,7 @@ static void	rotgamma(float gamma, t_mat *mat)
 	(*mat)[X][Y] = -sinf(gamma);
 	(*mat)[Y][X] = sinf(gamma);
 	(*mat)[Y][Y] = cosf(gamma);
+	(*mat)[W][W] = 1.0f;
 }
 
 void		rot(t_mat *ret, float alpha, float beta, float gamma)
@@ -50,9 +53,10 @@ void		rot(t_mat *ret, float alpha, float beta, float gamma)
 	t_mat	matgamma;
 
 	ft_bzero(&tmp, MAT_SIZE);
+	ft_bzero(ret, MAT_SIZE);
 	rotalpha(alpha, &matalpha);
 	rotbeta(beta, &matbeta);
 	rotgamma(gamma, &matgamma);
-	dot(&matalpha, &matbeta, &tmp);
-	dot(&matgamma, &tmp, ret);
+	dot_mat(&matalpha, &matbeta, &tmp);
+	dot_mat(&matgamma, &tmp, ret);
 }

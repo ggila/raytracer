@@ -1,30 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print.c                                            :+:      :+:    :+:   */
+/*   dot.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/23 15:54:16 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/24 13:37:08 by ggilaber         ###   ########.fr       */
+/*   Created: 2015/11/23 15:42:15 by ggilaber          #+#    #+#             */
+/*   Updated: 2015/11/24 09:03:43 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytracer.h"
-#include <stdio.h>
 
-void	print_mat(t_mat *mat)
+static float	matrix_dot(t_mat *lhs, t_mat *rhs, int i, int j)
+{
+	int		l;
+	float	ret;
+
+	ret = 0;
+	l = -1;
+	while (++l < 4)
+		ret += (*lhs)[i][l] * (*rhs)[l][j];
+	return ret;
+}
+
+void			dot_mat(t_mat *lhs, t_mat *rhs, t_mat *buf)
 {
 	int	i;
-	int		j;
+	int	j;
 
+	ft_bzero(buf, MAT_SIZE);
 	i = -1;
 	while (++i < 4)
 	{
 		j = -1;
 		while (++j < 4)
-			printf("%.2f\t", (*mat)[i][j]);
-		printf("\n");
+			(*buf)[i][j] = matrix_dot(lhs, rhs, i, j);
 	}
-	printf("\n");
+	return;
 }

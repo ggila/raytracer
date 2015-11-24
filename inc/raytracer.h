@@ -6,7 +6,7 @@
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 08:16:01 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/23 20:23:54 by ggilaber         ###   ########.fr       */
+/*   Updated: 2015/11/24 09:00:15 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # define W 3
 
 # define MAT_SIZE (16 * sizeof(float))
+# define VECT_SIZE (4 * sizeof(float))
 
 # define ABS(n) (((n) > 0) ? (n) : -(n))
 

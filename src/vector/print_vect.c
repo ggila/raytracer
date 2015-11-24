@@ -5,26 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/23 15:54:16 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/24 13:37:08 by ggilaber         ###   ########.fr       */
+/*   Created: 2015/11/24 09:38:42 by ggilaber          #+#    #+#             */
+/*   Updated: 2015/11/24 13:36:51 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytracer.h"
 #include <stdio.h>
 
-void	print_mat(t_mat *mat)
+void	print_vect(t_vect *vect)
 {
 	int	i;
-	int		j;
 
 	i = -1;
 	while (++i < 4)
-	{
-		j = -1;
-		while (++j < 4)
-			printf("%.2f\t", (*mat)[i][j]);
-		printf("\n");
-	}
+			printf("%.2f\t", (*vect)[i]);
 	printf("\n");
 }

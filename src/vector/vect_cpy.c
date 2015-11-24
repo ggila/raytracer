@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print.c                                            :+:      :+:    :+:   */
+/*   vect_cpy.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/23 15:54:16 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/24 13:37:08 by ggilaber         ###   ########.fr       */
+/*   Created: 2015/11/24 09:18:10 by ggilaber          #+#    #+#             */
+/*   Updated: 2015/11/24 09:21:02 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytracer.h"
-#include <stdio.h>
 
-void	print_mat(t_mat *mat)
+void	vect_cpy(t_vect *dst, t_vect *src)
 {
-	int	i;
-	int		j;
-
-	i = -1;
-	while (++i < 4)
-	{
-		j = -1;
-		while (++j < 4)
-			printf("%.2f\t", (*mat)[i][j]);
-		printf("\n");
-	}
-	printf("\n");
+	(*dst)[X] = (*src)[X];
+	(*dst)[Y] = (*src)[Y];
+	(*dst)[Z] = (*src)[Z];
+	(*dst)[W] = (*src)[W];
 }
