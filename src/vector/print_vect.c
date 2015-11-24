@@ -6,7 +6,7 @@
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 09:38:42 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/24 13:36:51 by ggilaber         ###   ########.fr       */
+/*   Updated: 2015/11/24 16:29:30 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,5 @@ void	print_vect(t_vect *vect)
 	i = -1;
 	while (++i < 4)
 			printf("%.2f\t", (*vect)[i]);
-	printf("\n");
+	printf("\n\n");
 }

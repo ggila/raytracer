@@ -6,30 +6,13 @@
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 08:14:45 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/23 19:20:07 by ggilaber         ###   ########.fr       */
+/*   Updated: 2015/11/24 19:33:52 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytracer.h"
 
-static void	sincos(void)
-{
-	int		i;
-	float	ang;
-	float	inc;
-
-	i = -1;
-	ang = 0;
-	inc = 2.0 * PI / 3600.0;
-	while (++i < 3600)
-	{
-		g_cos[i] = cos(ang);
-		g_sin[i] = sin(ang);
-		ang += inc;
-	}
-}
-
-static int	ft_init_env(t_env *env)
+static int	init_mlx(void)
 {
 	if (!(env->mlx = mlx_init()))
 		return (KO);
@@ -40,17 +23,25 @@ static int	ft_init_env(t_env *env)
 				&(env->img.size_line), &(env->img.endian));
 	if (!env->img.img || !env->img.data)
 		return (KO);
-	sincos();
 	return (OK);
+}
+
+static int	init_object(void)
+{
+	int i;
+
+	ft_bzero(g_obj, 10 * sizeof(u_object));
+	i = -1;
+	while (++i < 10)
+		g_obj[i].type = -1;
 }
 
 int	main(int ac, char **av)
 {
-	t_env	env;
-
 	if (ac != 2)
 		return (KO);
-	if (read_map(av[1]) == KO || ft_init_env(&env) == KO)
+	if (read_map(av[1]) == KO || init_mlx() == KO)
 		return (KO);
+	init_object();
 	return (OK);
 }

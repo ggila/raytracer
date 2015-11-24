@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_map.c                                         :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/23 09:57:35 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/23 10:04:25 by ggilaber         ###   ########.fr       */
+/*   Created: 2014/11/03 17:26:09 by ggilaber          #+#    #+#             */
+/*   Updated: 2015/10/12 16:36:48 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raytracer.h"
-
-char	read_map(char *str)
+int	ft_isdigit(int c)
 {
-	(void)str;
-	return (OK);
+	if ((c >= '0' && c <= '9'))
+		return (1);
+	else
+		return (0);
 }

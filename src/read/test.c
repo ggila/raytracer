@@ -5,36 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/23 16:52:00 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/24 16:29:58 by ggilaber         ###   ########.fr       */
+/*   Created: 2015/11/24 21:12:20 by ggilaber          #+#    #+#             */
+/*   Updated: 2015/11/24 22:13:59 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytracer.h"
 
-int	main(void)
+void	print_test(void)
 {
-	t_mat mat;
-	t_vect v1;
-	t_vect v2;
-	t_vect v3;
-	int i;
+	printf("cam:\n%.2f\t%.2f\t%.2f\n", g_cam.pos[X],
+			g_cam.pos[Y], g_cam.pos[Z]);
+	print_vect(&(g_cam.dir));
+}
 
-	i = -1;
-	ft_bzero(mat, MAT_SIZE);
-	while (++i < 4)
-	{
-		int j = -1;
-		while (++j < 4)
-			mat[i][j] = i + j;
-	}
-	new_vect(&v1, 2, 2, 0);
-	print_mat(&mat);
-	new_vect(&v2, 1, 2, 3);
-	print_vect(&v2);
-	dot_vect(&mat, &v2, &v3);
-	print_vect(&v3);
-	dot_vect(&mat, &v2, NULL);
-	print_vect(&v2);
+int	main(int ac, char **av)
+{
+	if (ac != 2)
+		return (KO);
+	read_map(av[1]);
+	print_test();
 	return (OK);
 }

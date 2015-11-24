@@ -1,40 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/23 16:52:00 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/24 16:29:58 by ggilaber         ###   ########.fr       */
+/*   Created: 2014/11/04 19:19:51 by ggilaber          #+#    #+#             */
+/*   Updated: 2015/10/12 16:43:12 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raytracer.h"
-
-int	main(void)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	t_mat mat;
-	t_vect v1;
-	t_vect v2;
-	t_vect v3;
-	int i;
-
-	i = -1;
-	ft_bzero(mat, MAT_SIZE);
-	while (++i < 4)
+	while (*s1 == *s2 && *s1)
 	{
-		int j = -1;
-		while (++j < 4)
-			mat[i][j] = i + j;
+		s1++;
+		s2++;
 	}
-	new_vect(&v1, 2, 2, 0);
-	print_mat(&mat);
-	new_vect(&v2, 1, 2, 3);
-	print_vect(&v2);
-	dot_vect(&mat, &v2, &v3);
-	print_vect(&v3);
-	dot_vect(&mat, &v2, NULL);
-	print_vect(&v2);
-	return (OK);
+	return (*s1 - *s2);
 }
