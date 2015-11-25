@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   norm_vect.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/04 19:19:51 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/10/12 16:43:12 by ggilaber         ###   ########.fr       */
+/*   Created: 2015/11/25 11:26:54 by ggilaber          #+#    #+#             */
+/*   Updated: 2015/11/25 11:36:23 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strcmp(const char *s1, const char *s2)
+#include "raytracer.h"
+
+float	norm_vect(t_vect *vect)
 {
-	while (*s1 == *s2 && *s1)
-	{
-		s1++;
-		s2++;
-	}
-	return (*s1 - *s2);
+	float	norm;
+
+	norm = pow(vect[X], 2.0f)
+			+ pow(vect[Y], 2.0f)
+			+ pow(vect[Z], 2.0f);
+	norm = pow(norm, 0.5f);
+	return (norm);
 }

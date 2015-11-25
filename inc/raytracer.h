@@ -6,7 +6,7 @@
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 08:16:01 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/24 22:16:50 by ggilaber         ###   ########.fr       */
+/*   Updated: 2015/11/25 10:31:29 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,17 +76,17 @@ typedef struct	s_camera
 	t_vect		dir;
 }				t_camera;
 
-typedef struct	s_sphere
-{
-	t_point		center;
-	float		radius;
-}				t_sphere;
-
 typedef struct	s_plan
 {
 	t_point		point;
 	t_vect		normal;
 }				t_plan;
+
+typedef struct	s_sphere
+{
+	t_point		point;
+	float		radius;
+}				t_sphere;
 
 typedef struct	s_cylindre
 {
@@ -97,23 +97,31 @@ typedef struct	s_cylindre
 
 typedef struct	s_cone
 {
-	t_point		center;
+	t_point		point;
 	t_vect		dir;
 	float		ang;
 }				t_cone;
 
 union			u_o
 {
-	char		type;
 	t_plan		plan;
 	t_sphere	sphere;
 	t_cylindre	cylindre;
 	t_cone		cone;
 };
 
+typedef struct	s_object
+{
+	int			type;
+	union u_o	shape;
+	t_mat		in;
+	t_mat		out;
+}				t_object;
+
 t_camera		g_cam;
-union u_o		g_obj[10];
+t_object		g_obj[11];
 t_env			g_env;
+t_mat			g_tran[10][10];
 
 # include "proto.h"
 

@@ -25,7 +25,7 @@ C_DIR = src
 
 LIB_FILE = lib/ft_bzero.c\
 		   lib/ft_isdigit.c\
-		   lib/ft_strcmp.c
+		   lib/ft_strncmp.c
 
 MATRIX_FILE = matrix/add.c\
 				matrix/dot_mat.c\

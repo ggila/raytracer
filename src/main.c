@@ -6,7 +6,7 @@
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 08:14:45 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/24 19:33:52 by ggilaber         ###   ########.fr       */
+/*   Updated: 2015/11/25 09:51:45 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ static int	init_object(void)
 {
 	int i;
 
-	ft_bzero(g_obj, 10 * sizeof(u_object));
+	ft_bzero(g_obj, 11 * sizeof(t_object));
 	i = -1;
-	while (++i < 10)
+	while (++i < 11)
 		g_obj[i].type = -1;
 }
 

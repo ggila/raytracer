@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print.c                                            :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/24 09:38:42 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/25 10:00:27 by ggilaber         ###   ########.fr       */
+/*   Created: 2014/11/04 21:24:16 by ggilaber          #+#    #+#             */
+/*   Updated: 2015/11/25 08:30:48 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raytracer.h"
-#include <stdio.h>
+#include <stdlib.h>
 
-void	print_vect(t_vect *vect)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	int	i;
-
-	i = -1;
-	while (++i < 4)
-			printf("%.2f\t", (*vect)[i]);
-	printf("\n");
-}
-
-void	print_point(t_point *point)
-{
-	printf("%.2f\t%.2f\t%.2f\n",
-								(*point)[X],
-								(*point)[Y],
-								(*point)[Z]);
+	if (!s1 || !s2)
+		return (0);
+	while (*s1 == *s2 && *s1 && n)
+	{
+		s1++;
+		s2++;
+		n--;
+	}
+	if (!n)
+		return (0);
+	return (*s1 - *s2);
 }
