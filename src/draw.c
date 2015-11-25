@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/23 16:37:51 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/25 16:16:41 by ggilaber         ###   ########.fr       */
+/*   Created: 2015/11/25 17:01:50 by ggilaber          #+#    #+#             */
+/*   Updated: 2015/11/25 20:27:24 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytracer.h"
+#include <string.h>
 
-void	ft_bzero(void *dst, size_t n)
+void		draw(void)
 {
-	size_t	i;
+	int		i;
+	int		j;
+	int		color = 0x00FF0000;
 
-	if (!dst)
-		return;
-	i = 0;
-	while (i < n / 8)
+	j = -1;
+	while (++j < IM_HEIGHT)
 	{
-		*((long unsigned int*)dst + i) = (long unsigned int)0;
-		i += 8;
+		i = -1;
+		while (++i < IM_WIDTH)
+			mlx_pixel_put(g_env.mlx, g_env.win, i, j, color);
+//			memcpy((g_env.img.data + (g_env.img.bpp / 8) *
+//					(i + j * IM_WIDTH)), &color, g_env.img.bpp / 8);
 	}
-	while (i < n)
-	{
-		((char*)dst)[i] = (char)0;
-		++i;
-	}
-	return;
+	printf("%d\t%d", i, j);
+//	mlx_put_image_to_window(g_env.mlx, g_env.win, g_env.img.img, 0, 0);
 }

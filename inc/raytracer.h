@@ -6,7 +6,7 @@
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 08:16:01 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/25 10:31:29 by ggilaber         ###   ########.fr       */
+/*   Updated: 2015/11/25 20:23:06 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,13 @@
 # define TITLE "ggilaber"
 # define READ_ERROR "can't read this scene\n"
 
-# define PI 3.1416
+# define PI 3.1415926535
 
-# define IM_WIDTH 600
-# define IM_HEIGHT 400
+# define IM_WIDTH 1000
+# define IM_HEIGHT 1000
+# define SCREEN_WIDTH 4.0
+# define SCREEN_HEIGHT 400
+# define SCREEN_DIST 2.0
 
 # define X 0
 # define Y 1

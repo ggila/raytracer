@@ -6,7 +6,7 @@
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 08:14:45 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/25 09:51:45 by ggilaber         ###   ########.fr       */
+/*   Updated: 2015/11/25 19:39:22 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 static int	init_mlx(void)
 {
-	if (!(env->mlx = mlx_init()))
+	if (!(g_env.mlx = mlx_init()))
 		return (KO);
-	if (!(env->win = mlx_new_window(env->mlx, IM_WIDTH, IM_HEIGHT, TITLE)))
+	if (!(g_env.win = mlx_new_window(g_env.mlx, IM_WIDTH, IM_HEIGHT, TITLE)))
 		return (KO);
-	if ((env->img.img = mlx_new_image(env->mlx, IM_WIDTH, IM_HEIGHT)))
-		env->img.data = mlx_get_data_addr(env->img.img, &(env->img.bpp),
-				&(env->img.size_line), &(env->img.endian));
-	if (!env->img.img || !env->img.data)
+	if ((g_env.img.img = mlx_new_image(g_env.mlx, IM_WIDTH, IM_HEIGHT)))
+		g_env.img.data = mlx_get_data_addr(g_env.img.img, &(g_env.img.bpp),
+				&(g_env.img.size_line), &(g_env.img.endian));
+	if (!g_env.img.img || !g_env.img.data)
 		return (KO);
 	return (OK);
 }
 
-static int	init_object(void)
+static void	init_object(void)
 {
 	int i;
 
@@ -36,12 +36,16 @@ static int	init_object(void)
 		g_obj[i].type = -1;
 }
 
-int	main(int ac, char **av)
+#include <unistd.h>
+
+int			main(int ac, char **av)
 {
 	if (ac != 2)
 		return (KO);
 	if (read_map(av[1]) == KO || init_mlx() == KO)
 		return (KO);
 	init_object();
+	draw();
+	sleep(5);
 	return (OK);
 }

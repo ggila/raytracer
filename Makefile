@@ -25,7 +25,8 @@ C_DIR = src
 
 LIB_FILE = lib/ft_bzero.c\
 		   lib/ft_isdigit.c\
-		   lib/ft_strncmp.c
+		   lib/ft_strncmp.c\
+		   lib/ft_memcpy.c
 
 MATRIX_FILE = matrix/add.c\
 				matrix/dot_mat.c\
@@ -42,7 +43,8 @@ READ_FILE = read/read_scene.c\
 			read/read_object.c\
 			read/read_number.c
 
-OTHER_FILE = main.c
+OTHER_FILE = main.c\
+			 draw.c
 
 C_FILE = $(LIB_FILE) $(MATRIX_FILE) $(VECTOR_FILE) \
 		 $(READ_FILE) $(OTHER_FILE)

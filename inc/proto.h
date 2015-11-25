@@ -17,14 +17,16 @@
 ** src
 */
 
+void	draw(void);
 
 /*
 ** src/lib
 */
 
+void	ft_memcpy(void *dst, void *src, size_t n);
 void	ft_bzero(void *dst, size_t n);
-int	ft_strncmp(const char *s1, const char *s2, size_t n);
-int	ft_isdigit(int c);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+int		ft_isdigit(int c);
 
 /*
 ** src/vector
@@ -33,6 +35,7 @@ int	ft_isdigit(int c);
 void	vect_cpy(t_vect *dst, t_vect *src);
 void	new_vect(t_vect *new, float x, float y, float z);
 void	dot_vect(t_mat *mat, t_vect *vect, t_vect *buf);
+float	norm_vect(t_vect *vect);
 void	print_vect(t_vect *vect);
 void	print_point(t_point *point);
 
@@ -45,11 +48,6 @@ void	dot_mat(t_mat *lhs, t_mat *rhs, t_mat *buf);
 void	print_mat(t_mat *mat);
 void	trans(t_vect *vect, t_mat mat);
 void	rot(t_mat *ret, float alpha, float beta, float gamma);
-
-/*
-** src/object
-*/
-
 
 /*
 ** src/read
@@ -67,7 +65,7 @@ void	read_plan(int fd, union u_o *u);
 void	read_sphere(int fd, union u_o *u);
 void	read_cylindre(int fd, union u_o *u);
 void	read_cone(int fd, union u_o *u);
-int	read_number(int fd, char end, int *n, char *flag);
+int		read_number(int fd, char end, int *n, char *flag);
 float	read_float(int fd, char end);
 void	read_pos(int fd, void *addr);
 
