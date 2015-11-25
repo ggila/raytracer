@@ -6,7 +6,7 @@
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 08:16:01 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/25 20:23:06 by ggilaber         ###   ########.fr       */
+/*   Updated: 2015/11/25 20:52:11 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,21 +52,14 @@
 
 # define MASK			1U
 
-typedef struct	s_img
-{
-	void		*img;
-	char		*data;
-	int			bpp;
-	int			bypp;
-	int			size_line;
-	int			endian;
-}				t_img;
-
 typedef struct	s_env
 {
 	void		*mlx;
 	void		*win;
-	t_img		img;
+	void		*img;
+	char		*data;
+	int			datasize;
+	int			dataline;
 }				t_env;
 
 typedef float	t_mat[4][4];
