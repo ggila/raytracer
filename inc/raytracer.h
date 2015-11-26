@@ -6,7 +6,7 @@
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 08:16:01 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/25 20:52:11 by ggilaber         ###   ########.fr       */
+/*   Updated: 2015/11/26 15:52:43 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@
 # define IM_HEIGHT 1000
 # define SCREEN_WIDTH 4.0
 # define SCREEN_HEIGHT 400
-# define SCREEN_DIST 2.0
 
 # define X 0
 # define Y 1
@@ -64,12 +63,19 @@ typedef struct	s_env
 
 typedef float	t_mat[4][4];
 typedef float	t_vect[4];
-typedef float	t_point[3];
+typedef float	t_point[4];
+
+typedef struct	s_ray
+{
+	t_point		pos;
+	t_vect		vect;
+}				t_ray;
 
 typedef struct	s_camera
 {
 	t_point		pos;
 	t_vect		dir;
+	t_vect		screen;
 }				t_camera;
 
 typedef struct	s_plan
@@ -110,6 +116,7 @@ typedef struct	s_object
 {
 	int			type;
 	union u_o	shape;
+	int			color;
 	t_mat		in;
 	t_mat		out;
 }				t_object;

@@ -34,17 +34,18 @@ MATRIX_FILE = matrix/add.c\
 				matrix/rot.c\
 				matrix/trans.c
 
-VECTOR_FILE = vector/dot_vect.c\
+VECTOR_FILE = vector/mat_vect.c\
 			  vector/new_vect.c\
-			  vector/vect_cpy.c\
-			  vector/print_vect.c
+			  vector/print_vect.c\
+			  vector/scalar_prod.c
 
 READ_FILE = read/read_scene.c\
 			read/read_object.c\
+			read/read_shape.c\
 			read/read_number.c
 
 OTHER_FILE = main.c\
-			 draw.c
+			 raytracer.c
 
 C_FILE = $(LIB_FILE) $(MATRIX_FILE) $(VECTOR_FILE) \
 		 $(READ_FILE) $(OTHER_FILE)

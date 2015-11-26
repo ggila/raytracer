@@ -6,13 +6,13 @@
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 15:42:15 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/24 09:03:43 by ggilaber         ###   ########.fr       */
+/*   Updated: 2015/11/26 21:31:49 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytracer.h"
 
-static float	matrix_dot(t_mat *lhs, t_mat *rhs, int i, int j)
+static float	matrix_dot(t_mat lhs, t_mat rhs, int i, int j)
 {
 	int		l;
 	float	ret;
@@ -20,11 +20,11 @@ static float	matrix_dot(t_mat *lhs, t_mat *rhs, int i, int j)
 	ret = 0;
 	l = -1;
 	while (++l < 4)
-		ret += (*lhs)[i][l] * (*rhs)[l][j];
+		ret += lhs[i][l] * rhs[l][j];
 	return ret;
 }
 
-void			dot_mat(t_mat *lhs, t_mat *rhs, t_mat *buf)
+void			dot_mat(t_mat lhs, t_mat rhs, t_mat buf)
 {
 	int	i;
 	int	j;
@@ -35,7 +35,7 @@ void			dot_mat(t_mat *lhs, t_mat *rhs, t_mat *buf)
 	{
 		j = -1;
 		while (++j < 4)
-			(*buf)[i][j] = matrix_dot(lhs, rhs, i, j);
+			buf[i][j] = matrix_dot(lhs, rhs, i, j);
 	}
 	return;
 }

@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   dot_vect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/25 17:01:50 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/26 07:32:47 by ggilaber         ###   ########.fr       */
+/*   Created: 2015/11/24 09:05:08 by ggilaber          #+#    #+#             */
+/*   Updated: 2015/11/26 18:42:15 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytracer.h"
-#include <string.h>
 
-void		draw(void)
+void	matvect(const t_mat mat, t_vect vect, t_vect buf)
 {
+	t_vect	tmp;
+	float	*res;
 	int		i;
 	int		j;
-	int		color = 0x00FF00FF;
 
-	j = -1;
-	while (++j < IM_HEIGHT)
+	res = (buf == NULL) ? tmp : buf;
+	ft_bzero(res, VECT_SIZE);
+	i = -1;
+	while (++i < 4)
 	{
-		i = -1;
-		while (++i < IM_WIDTH)
-			mlx_pixel_put(g_env.mlx, g_env.win, color, i, j);
-//			memcpy((g_env.img.data + (g_env.img.bpp / 8) *
-//					(i + j * IM_WIDTH)), &color, g_env.img.bpp / 8);
+		j = -1;
+		while (++j < 4)
+			res[i] += mat[i][j] * vect[j];
 	}
-//	mlx_put_image_to_window(g_env.mlx, g_env.win, g_env.img.img, 0, 0);
+	if (buf == NULL)
+		ft_memcpy(vect, res, VECT_SIZE);
 }

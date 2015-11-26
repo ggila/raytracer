@@ -6,20 +6,21 @@
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 08:14:45 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/26 07:36:04 by ggilaber         ###   ########.fr       */
+/*   Updated: 2015/11/26 12:01:12 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytracer.h"
 
-static int	init_mlx(void)
+//static void	init_mlx(void)
+void	init_mlx(void)
 {
 //	int	endian;
 
 	if (!(g_env.mlx = mlx_init()))
-		return (KO);
+		exit(KO);
 	if (!(g_env.win = mlx_new_window(g_env.mlx, IM_WIDTH, IM_HEIGHT, TITLE)))
-		return (KO);
+		exit(KO);
 	mlx_pixel_put(g_env.mlx, g_env.win, 0x00FF00FF, IM_WIDTH/2, IM_HEIGHT/2);
 	mlx_pixel_put(g_env.mlx, g_env.win, 0x00FF00FF, IM_WIDTH/2, IM_HEIGHT/2+1);
 	mlx_pixel_put(g_env.mlx, g_env.win, 0x00FF00FF, IM_WIDTH/2+1, IM_HEIGHT/2);
@@ -28,12 +29,11 @@ static int	init_mlx(void)
 //		g_env.data = mlx_get_data_addr(g_env.img, &(g_env.datasize),
 //				&(g_env.dataline), &(endian));
 //	if (!g_env.img || !g_env.data)
-//		return (KO);
+//		exit(KO);
 	g_env.datasize /= 8;
-	return (OK);
 }
 
-void	init_object(void)
+static void		init_object(void)
 {
 	int i;
 
@@ -43,18 +43,16 @@ void	init_object(void)
 		g_obj[i].type = -1;
 }
 
-#include <unistd.h>
-
-//int			main(int ac, char **av)
-int			main(void)
+//int			main(void)
+int			main(int ac, char **av)
 {
-//	if (ac != 2)
-//		return (KO);
-//	if (read_map(av[1]) == KO || init_mlx() == KO)
-//		return (KO);
-//	init_object();
-	init_mlx();
-	draw();
+	if (ac != 2)
+		return (KO);
+//	init_mlx();
+	init_object();
+	read_map(av[1]);
+	check_cam();
+//	draw();
 	sleep(10);
 	return (OK);
 }

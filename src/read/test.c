@@ -6,7 +6,7 @@
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 21:12:20 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/25 11:07:56 by ggilaber         ###   ########.fr       */
+/*   Updated: 2015/11/26 12:51:19 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	print_camera(void)
 
 void	print_plan(union u_o *p)
 {
-	printf("plan:\n");
 	print_point(&(p->plan.point));
 	print_vect(&(p->plan.normal));
 	printf("\n");
@@ -31,7 +30,6 @@ void	print_plan(union u_o *p)
 
 void	print_sphere(union u_o *s)
 {
-	printf("sphere:\n");
 	print_point(&(s->sphere.point));
 	printf("%.2f\n", s->sphere.radius);
 	printf("\n");
@@ -39,7 +37,6 @@ void	print_sphere(union u_o *s)
 
 void	print_cylindre(union u_o *c)
 {
-	printf("cylindre:\n");
 	print_point(&(c->cylindre.point));
 	print_vect(&(c->cylindre.dir));
 	printf("%.2f\n", c->cylindre.radius);
@@ -48,7 +45,6 @@ void	print_cylindre(union u_o *c)
 
 void	print_cone(union u_o *c)
 {
-	printf("cone:\n");
 	print_point(&(c->cone.point));
 	print_vect(&(c->cone.dir));
 	printf("%.2f\n", c->cone.ang);
@@ -65,23 +61,29 @@ static void	init_object(void)
 		g_obj[i].type = -1;
 }
 
-int	main(int ac, char **av)
+//int	main(int ac, char **av)
+int	main(void)
 {
-	void (*f[4])(union u_o*);
+	void (*f[4])(union u_o*) = {
+	print_plan,
+	print_sphere,
+	print_cylindre,
+	print_cone};
+	char *tab[] = {"plan", "sphere", "cylindre", "cone"};
 
-	if (ac != 2)
-		return (KO);
+//	if (ac != 2)
+//		return (KO);
 
 	init_object();
-	f[PLAN] = print_plan;
-	f[SPHERE] = print_sphere;
-	f[CYLINDRE] = print_cylindre;
-	f[CONE] = print_cone;
 
-	read_map(av[1]);
+//	read_map(av[1]);
+	read_map("./scene/scene_test");
 	print_camera();
 	int i = -1;
 	while (g_obj[++i].type != -1)
+	{
+		printf("%s:\n0x%x\n", tab[g_obj[i].type], g_obj[i].color);
 		f[g_obj[i].type](&(g_obj[i].shape));
+	}
 	return (OK);
 }

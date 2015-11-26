@@ -6,13 +6,13 @@
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 19:24:50 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/25 10:19:44 by ggilaber         ###   ########.fr       */
+/*   Updated: 2015/11/26 12:57:01 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytracer.h"
 
-void	check_token(int fd)
+static void	check_token(int fd)
 {
 	int		r;
 	char	b;
@@ -22,35 +22,50 @@ void	check_token(int fd)
 		read_error();
 }
 
-void	read_plan(int fd, union u_o *u)
+static void	init(void (*f[4])(int, union u_o*))
 {
-	check_token(fd);
-	read_pos(fd, &(u->plan.point));
-	read_pos(fd, &(u->plan.normal));
-	u->plan.normal[W] = 1.0f;
+	f[PLAN] = read_plan;
+	f[SPHERE] = read_sphere;
+	f[CYLINDRE] = read_cylindre;
+	f[CONE] = read_cone;
 }
 
-void	read_sphere(int fd, union u_o *u)
+static void	read_object(int fd, t_object *obj, int shape,
+							void (*f[4])(int, union u_o*))
 {
-	check_token(fd);
-	read_pos(fd, &(u->sphere.point));
-	u->sphere.radius = read_float(fd, '|');;
+	t_vect	color;
+
+	if (shape > 3)
+		read_error();
+	obj->type = shape;
+	read_pos(fd, &(color));
+	obj->color = ((unsigned char)color[0] << 16) +
+					((unsigned char)color[1] << 8) +
+					(unsigned char)color[2];
+	obj->color &= 0X00ffffff;
+	f[shape](fd, &(obj->shape));
 }
 
-void	read_cylindre(int fd, union u_o *u)
+void		read_objects(int fd)
 {
-	check_token(fd);
-	read_pos(fd, &(u->cylindre.point));
-	read_pos(fd, &(u->cylindre.dir));
-	u->cylindre.dir[W] = 1.0f;
-	u->cylindre.radius = read_float(fd, '|');
-}
+	char			b;
+	int				r;
+	int				i;
+	void			(*f[4])(int, union u_o*);
 
-void	read_cone(int fd, union u_o *u)
-{
-	check_token(fd);
-	read_pos(fd, &(u->cone.point));
-	read_pos(fd, &(u->cone.dir));
-	u->cone.dir[W] = 1.0f;
-	u->cone.ang = read_float(fd, '|');
+	init(f);
+	i = 0;
+	while ((r = read(fd, &b, 1)))
+	{
+		if ((r == -1) || (i == 10) || !ft_isdigit(b))
+			read_error();
+		check_token(fd);
+		read_object(fd, &(g_obj[i]), b - '0', f);
+		r = read(fd, &b, 1);
+		if ((r == -1) || (b != '\n'))
+			read_error();
+		i++;
+	}
+	if (read(fd, &b, 1))
+		read_error();
 }
