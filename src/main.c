@@ -6,7 +6,7 @@
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 08:14:45 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/25 20:56:43 by ggilaber         ###   ########.fr       */
+/*   Updated: 2015/11/26 07:36:04 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,21 @@
 
 static int	init_mlx(void)
 {
-	int	endian;
+//	int	endian;
 
 	if (!(g_env.mlx = mlx_init()))
 		return (KO);
 	if (!(g_env.win = mlx_new_window(g_env.mlx, IM_WIDTH, IM_HEIGHT, TITLE)))
 		return (KO);
-	if ((g_env.img = mlx_new_image(g_env.mlx, IM_WIDTH, IM_HEIGHT)))
-		g_env.data = mlx_get_data_addr(g_env.img, &(g_env.datasize),
-				&(g_env.dataline), &(endian));
-	if (!g_env.img.img || !g_env.img.data)
-		return (KO);
+	mlx_pixel_put(g_env.mlx, g_env.win, 0x00FF00FF, IM_WIDTH/2, IM_HEIGHT/2);
+	mlx_pixel_put(g_env.mlx, g_env.win, 0x00FF00FF, IM_WIDTH/2, IM_HEIGHT/2+1);
+	mlx_pixel_put(g_env.mlx, g_env.win, 0x00FF00FF, IM_WIDTH/2+1, IM_HEIGHT/2);
+	mlx_pixel_put(g_env.mlx, g_env.win, 0x00FF00FF, IM_WIDTH/2+1, IM_HEIGHT/2+1);
+//	if ((g_env.img = mlx_new_image(g_env.mlx, IM_WIDTH, IM_HEIGHT)))
+//		g_env.data = mlx_get_data_addr(g_env.img, &(g_env.datasize),
+//				&(g_env.dataline), &(endian));
+//	if (!g_env.img || !g_env.data)
+//		return (KO);
 	g_env.datasize /= 8;
 	return (OK);
 }
@@ -41,14 +45,16 @@ void	init_object(void)
 
 #include <unistd.h>
 
-int			main(int ac, char **av)
+//int			main(int ac, char **av)
+int			main(void)
 {
-	if (ac != 2)
-		return (KO);
-	if (read_map(av[1]) == KO || init_mlx() == KO)
-		return (KO);
+//	if (ac != 2)
+//		return (KO);
+//	if (read_map(av[1]) == KO || init_mlx() == KO)
+//		return (KO);
 //	init_object();
-//	draw();
+	init_mlx();
+	draw();
 	sleep(10);
 	return (OK);
 }

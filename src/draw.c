@@ -6,7 +6,7 @@
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 17:01:50 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/25 20:44:48 by ggilaber         ###   ########.fr       */
+/*   Updated: 2015/11/26 07:32:47 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void		draw(void)
 {
 	int		i;
 	int		j;
-	int		color = 0x00FF0000;
+	int		color = 0x00FF00FF;
 
 	j = -1;
 	while (++j < IM_HEIGHT)
