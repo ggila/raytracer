@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_float_equal.c                                   :+:      :+:    :+:   */
+/*   scene_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/27 11:38:08 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/27 11:39:06 by ggilaber         ###   ########.fr       */
+/*   Created: 2015/11/27 11:50:28 by ggilaber          #+#    #+#             */
+/*   Updated: 2015/11/27 17:22:20 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytracer.h"
 
-char	ft_float_equal(float a, float b)
+void		scene_error(int type, int line)
 {
-	float diff;
-	float largest;
+	char	b[2];
 
-	diff = fabs(a - b);
-	a = fabs(a);
-	b = fabs(b);
-	largest = (b > a) ? b : a;
-	if (diff <= largest * FLT_EPSILON)
-		return (OK);
-	return (KO);
+	write(1, READ_ERROR, 22);
+	if (line > 0)
+	{
+		write(1, "line ", 5);
+		b[0] = line / 10 - '0';
+		b[1] = line % 10 - '0';
+		write(1, b, 2);
+		write(1, " :", 2);
+	}
+	write(1, g_errno[type].msg, g_errno[type].len);
+	exit(KO);
 }

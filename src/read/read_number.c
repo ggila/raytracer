@@ -6,11 +6,13 @@
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 17:34:01 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/27 07:23:27 by ggilaber         ###   ########.fr       */
+/*   Updated: 2015/11/27 17:13:02 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytracer.h"
+
+extern int g_line;
 
 int	read_number(const int fd, const char end, int *n, char *flag)
 {
@@ -20,14 +22,14 @@ int	read_number(const int fd, const char end, int *n, char *flag)
 
 	res = 0;
 	*n = 0;
-	while ((r = read(fd, &b, 1)))
+	while ((r = read_one(fd, &b)))
 	{
 		if (b == '-' && (*n == 0))
 			*flag = 1;
 		else
 		{
-			if ((r == -1) || (!ft_isdigit(b) && (b != end)))
-				read_error();
+			if ((!ft_isdigit(b) && (b != end)))
+				scene_error(WRONG_TRIPLE, g_line);
 			if (b == end)
 				break;
 			res += (b - '0');

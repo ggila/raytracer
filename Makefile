@@ -47,7 +47,10 @@ READ_FILE = read/read_scene.c\
 			read/read_number.c
 
 OTHER_FILE = main.c\
-			 raytracer.c
+			raytracer.c\
+			init_errno.c\
+			scene_error.c
+#			check_scene.c
 
 C_FILE = $(LIB_FILE) $(MATRIX_FILE) $(VECTOR_FILE) \
 		 $(READ_FILE) $(OTHER_FILE)
@@ -64,7 +67,8 @@ O_DIR = obj
 O_TDIR = obj/test
 C_MATRIX_TEST = $(MATRIX_FILE) $(LIB_FILE)
 C_VECTOR_TEST = $(VECTOR_FILE) $(LIB_FILE) matrix/print.c
-C_READ_TEST = $(READ_FILE) $(LIB_FILE) vector/print_vect.c
+C_READ_TEST = $(READ_FILE) $(LIB_FILE) vector/print_vect.c\
+			  init_errno.c scene_error.c
 C_LIB_TEST = $(LIB_FILE) vector/new_vect.c vector/scalar_prod.c
 
 MATRIX = $(addprefix $(C_DIR)/, $(C_MATRIX_TEST))

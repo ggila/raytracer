@@ -6,7 +6,7 @@
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 08:16:01 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/27 09:19:49 by ggilaber         ###   ########.fr       */
+/*   Updated: 2015/11/27 12:03:14 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
+
 # include "mlx.h"
+# include "error.h"
 
 #				include "stdio.h"
 
@@ -51,6 +53,12 @@
 # define ABS(n) (((n) > 0) ? (n) : -(n))
 
 # define MASK			1U
+
+typedef struct	s_error
+{
+	char		*msg;
+	int			len;
+}				t_error;
 
 typedef struct	s_env
 {
@@ -123,6 +131,7 @@ typedef struct	s_object
 	t_mat		out;
 }				t_object;
 
+t_error			g_errno[15];
 t_camera		g_cam;
 t_object		g_obj[11];
 t_env			g_env;

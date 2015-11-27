@@ -6,20 +6,32 @@
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 19:24:50 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/27 07:22:40 by ggilaber         ###   ########.fr       */
+/*   Updated: 2015/11/27 17:24:58 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytracer.h"
 
+int			g_line;
+
+int			read_one(int fd, char *b)
+{
+	int r;
+
+	r = read(fd, b, 1);
+	if (r == -1)
+		scene_error(READ, -1);
+	return (r);
+}
+
 static void	check_token(const int fd)
 {
-	int		r;
 	char	b;
+	int		r;
 
-	r = read(fd, &b, 1);
-	if ((r == -1) || (b != '|'))
-		read_error();
+	r = read_one(fd, &b);
+	if (b != '|' || !r)
+		scene_error(MISSING_TOKEN, g_line);
 }
 
 static void	init(void (*f[4])(const int, union u_o*))
@@ -35,8 +47,8 @@ static void	read_object(const int fd, t_object *obj, const int shape,
 {
 	t_vect	color;
 
-	if (shape > 3)
-		read_error();
+	if (shape < 0 || shape > 3)
+		scene_error(UKNOWN_SHAPE, g_line);
 	obj->type = shape;
 	read_pos(fd, &(color));
 	obj->color = ((unsigned char)color[0] << 16) +
@@ -50,22 +62,19 @@ void		read_objects(const int fd)
 {
 	char			b;
 	int				r;
-	int				i;
 	void			(*f[4])(int, union u_o*);
 
 	init(f);
-	i = 0;
-	while ((r = read(fd, &b, 1)))
+	g_line = 3;
+	while ((r = read_one(fd, &b)))
 	{
-		if ((r == -1) || (i == 10) || !ft_isdigit(b))
-			read_error();
+		if (g_line == 13)
+			scene_error(NB_OBJECT, g_line);
 		check_token(fd);
-		read_object(fd, &(g_obj[i]), b - '0', f);
-		r = read(fd, &b, 1);
-		if ((r == -1) || (b != '\n'))
-			read_error();
-		i++;
+		read_object(fd, &(g_obj[g_line - 3]), b - '0', f);
+		r = read_one(fd, &b);
+		if (b != '\n')
+			scene_error(END_OBJ, g_line);
+		g_line++;
 	}
-	if (read(fd, &b, 1))
-		read_error();
 }

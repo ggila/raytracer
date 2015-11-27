@@ -6,7 +6,7 @@
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 08:14:45 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/27 08:56:33 by ggilaber         ###   ########.fr       */
+/*   Updated: 2015/11/27 11:41:10 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 //static void	init_mlx(void)
 void	init_mlx(void)
 {
-//	int	endian;
+	int	endian;
 
 	if (!(g_env.mlx = mlx_init()))
 		exit(KO);
@@ -47,7 +47,7 @@ int			main(int ac, char **av)
 	init_mlx();
 	init_object();
 	read_map(av[1]);
-//	check_cam();
+	check_scene();
 	raytracer();
 	sleep(20);
 	return (OK);

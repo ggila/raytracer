@@ -6,7 +6,7 @@
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 21:12:20 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/27 07:25:42 by ggilaber         ###   ########.fr       */
+/*   Updated: 2015/11/27 17:20:47 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int	main(void)
 //		return (KO);
 
 	init_object();
+	init_errno();
 
 //	read_map(av[1]);
 	read_map("./scene/scene_test");

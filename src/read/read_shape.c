@@ -6,13 +6,13 @@
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 19:24:50 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/27 07:30:25 by ggilaber         ###   ########.fr       */
+/*   Updated: 2015/11/27 11:40:11 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytracer.h"
 
-void	read_plan(const int fd, union u_o * const u)
+void	read_plan(const int fd, union u_o *const u)
 {
 	read_pos(fd, &(u->plan.point));
 	u->plan.normal[W] = 1.0f;
@@ -20,14 +20,14 @@ void	read_plan(const int fd, union u_o * const u)
 	u->plan.normal[W] = 0.0f;
 }
 
-void	read_sphere(const int fd, union u_o * const u)
+void	read_sphere(const int fd, union u_o *const u)
 {
 	read_pos(fd, &(u->sphere.point));
 	u->sphere.point[W] = 1.0f;
-	u->sphere.radius = read_float(fd, '|');;
+	u->sphere.radius = read_float(fd, '|');
 }
 
-void	read_cylindre(const int fd, union u_o * const u)
+void	read_cylindre(const int fd, union u_o *const u)
 {
 	read_pos(fd, &(u->cylindre.point));
 	u->cylindre.point[W] = 1.0f;
@@ -36,7 +36,7 @@ void	read_cylindre(const int fd, union u_o * const u)
 	u->cylindre.radius = read_float(fd, '|');
 }
 
-void	read_cone(const int fd, union u_o * const u)
+void	read_cone(const int fd, union u_o *const u)
 {
 	read_pos(fd, &(u->cone.point));
 	u->cone.point[W] = 1.0f;

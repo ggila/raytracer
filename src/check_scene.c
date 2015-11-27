@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_float_equal.c                                   :+:      :+:    :+:   */
+/*   check_scene.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/27 11:38:08 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/27 11:39:06 by ggilaber         ###   ########.fr       */
+/*   Created: 2015/11/27 11:41:26 by ggilaber          #+#    #+#             */
+/*   Updated: 2015/11/27 11:49:43 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytracer.h"
 
-char	ft_float_equal(float a, float b)
+void	check_scene(void)
 {
-	float diff;
-	float largest;
-
-	diff = fabs(a - b);
-	a = fabs(a);
-	b = fabs(b);
-	largest = (b > a) ? b : a;
-	if (diff <= largest * FLT_EPSILON)
-		return (OK);
-	return (KO);
+	if (ft_float_equal(scalar_product(g_cam.dir, g_cam.screen), 0) == KO)
+		scene_error();
 }

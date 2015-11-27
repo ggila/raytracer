@@ -1,0 +1,9 @@
+OPEN -> open() failed
+READ -> read() failed
+MISSING_TOKEN -> missing token \'|\'
+UKNOWN_SHAPE -> 4 differents objects available (identifier from 0 to 3)
+NB_OBJECT -> do not exceed 10 objects
+END_OBJ -> too many stuffs for describe this object
+CAM_END -> expected blank line between cam and object
+WRONG_TRIPLE -> wrong format, expected three float separated with comma
+CAM_IDENTIFIER -> file must begin with camera definition (\"100|...\")
