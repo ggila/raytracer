@@ -6,13 +6,13 @@
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 17:34:01 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/25 11:05:47 by ggilaber         ###   ########.fr       */
+/*   Updated: 2015/11/27 07:23:27 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytracer.h"
 
-int	read_number(int fd, char end, int *n, char *flag)
+int	read_number(const int fd, const char end, int *n, char *flag)
 {
 	int		r;
 	int		res;
@@ -38,7 +38,7 @@ int	read_number(int fd, char end, int *n, char *flag)
 	return (res / 10);
 }
 
-float	read_float(int fd, char end)
+float	read_float(const int fd, const char end)
 {
 	float	floor;
 	float	virg;
@@ -53,9 +53,12 @@ float	read_float(int fd, char end)
 	return ((sign ? -1 : 1) * (floor + virg));
 }
 
-void	read_pos(int fd, void *addr)
+void	read_pos(const int fd, const void *addr)
 {
-	*(float*)addr = read_float(fd, ',');
-	*((float*)addr + 1) = read_float(fd, ',');
-	*((float*)addr + 2) = read_float(fd, '|');
+	float	*f;
+
+	f = (float*)addr;
+	*f = read_float(fd, ',');
+	*(f + 1) = read_float(fd, ',');
+	*(f + 2) = read_float(fd, '|');
 }

@@ -6,7 +6,7 @@
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 21:12:20 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/26 12:51:19 by ggilaber         ###   ########.fr       */
+/*   Updated: 2015/11/27 07:25:42 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,37 +16,37 @@
 void	print_camera(void)
 {
 	printf("cam:\n");
-	print_point(&(g_cam.pos));
-	print_vect(&(g_cam.dir));
+	print_point(g_cam.pos);
+	print_vect(g_cam.dir);
 	printf("\n");
 }
 
 void	print_plan(union u_o *p)
 {
-	print_point(&(p->plan.point));
-	print_vect(&(p->plan.normal));
+	print_point(p->plan.point);
+	print_vect(p->plan.normal);
 	printf("\n");
 }
 
 void	print_sphere(union u_o *s)
 {
-	print_point(&(s->sphere.point));
+	print_point(s->sphere.point);
 	printf("%.2f\n", s->sphere.radius);
 	printf("\n");
 }
 
 void	print_cylindre(union u_o *c)
 {
-	print_point(&(c->cylindre.point));
-	print_vect(&(c->cylindre.dir));
+	print_point(c->cylindre.point);
+	print_vect(c->cylindre.dir);
 	printf("%.2f\n", c->cylindre.radius);
 	printf("\n");
 }
 
 void	print_cone(union u_o *c)
 {
-	print_point(&(c->cone.point));
-	print_vect(&(c->cone.dir));
+	print_point(c->cone.point);
+	print_vect(c->cone.dir);
 	printf("%.2f\n", c->cone.ang);
 	printf("\n");
 }

@@ -6,7 +6,7 @@
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 08:16:01 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/26 15:52:43 by ggilaber         ###   ########.fr       */
+/*   Updated: 2015/11/27 09:19:49 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define READ_ERROR "can't read this scene\n"
 
 # define PI 3.1415926535
+# define FLT_EPSILON 1.1920929e-07f
 
 # define IM_WIDTH 1000
 # define IM_HEIGHT 1000
@@ -69,6 +70,7 @@ typedef struct	s_ray
 {
 	t_point		pos;
 	t_vect		vect;
+	char		rebond;
 }				t_ray;
 
 typedef struct	s_camera
@@ -124,7 +126,6 @@ typedef struct	s_object
 t_camera		g_cam;
 t_object		g_obj[11];
 t_env			g_env;
-t_mat			g_tran[10][10];
 
 # include "proto.h"
 

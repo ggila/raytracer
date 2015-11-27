@@ -6,13 +6,13 @@
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 19:24:50 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/26 12:57:01 by ggilaber         ###   ########.fr       */
+/*   Updated: 2015/11/27 07:22:40 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytracer.h"
 
-static void	check_token(int fd)
+static void	check_token(const int fd)
 {
 	int		r;
 	char	b;
@@ -22,7 +22,7 @@ static void	check_token(int fd)
 		read_error();
 }
 
-static void	init(void (*f[4])(int, union u_o*))
+static void	init(void (*f[4])(const int, union u_o*))
 {
 	f[PLAN] = read_plan;
 	f[SPHERE] = read_sphere;
@@ -30,8 +30,8 @@ static void	init(void (*f[4])(int, union u_o*))
 	f[CONE] = read_cone;
 }
 
-static void	read_object(int fd, t_object *obj, int shape,
-							void (*f[4])(int, union u_o*))
+static void	read_object(const int fd, t_object *obj, const int shape,
+							void (*f[4])(const int, union u_o*))
 {
 	t_vect	color;
 
@@ -46,7 +46,7 @@ static void	read_object(int fd, t_object *obj, int shape,
 	f[shape](fd, &(obj->shape));
 }
 
-void		read_objects(int fd)
+void		read_objects(const int fd)
 {
 	char			b;
 	int				r;

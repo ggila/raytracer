@@ -6,7 +6,7 @@
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 08:14:45 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/26 12:01:12 by ggilaber         ###   ########.fr       */
+/*   Updated: 2015/11/27 08:56:33 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,11 @@ void	init_mlx(void)
 		exit(KO);
 	if (!(g_env.win = mlx_new_window(g_env.mlx, IM_WIDTH, IM_HEIGHT, TITLE)))
 		exit(KO);
-	mlx_pixel_put(g_env.mlx, g_env.win, 0x00FF00FF, IM_WIDTH/2, IM_HEIGHT/2);
-	mlx_pixel_put(g_env.mlx, g_env.win, 0x00FF00FF, IM_WIDTH/2, IM_HEIGHT/2+1);
-	mlx_pixel_put(g_env.mlx, g_env.win, 0x00FF00FF, IM_WIDTH/2+1, IM_HEIGHT/2);
-	mlx_pixel_put(g_env.mlx, g_env.win, 0x00FF00FF, IM_WIDTH/2+1, IM_HEIGHT/2+1);
-//	if ((g_env.img = mlx_new_image(g_env.mlx, IM_WIDTH, IM_HEIGHT)))
-//		g_env.data = mlx_get_data_addr(g_env.img, &(g_env.datasize),
-//				&(g_env.dataline), &(endian));
-//	if (!g_env.img || !g_env.data)
-//		exit(KO);
+	if ((g_env.img = mlx_new_image(g_env.mlx, IM_WIDTH, IM_HEIGHT)))
+		g_env.data = mlx_get_data_addr(g_env.img, &(g_env.datasize),
+				&(g_env.dataline), &(endian));
+	if (!g_env.img || !g_env.data)
+		exit(KO);
 	g_env.datasize /= 8;
 }
 
@@ -48,11 +44,11 @@ int			main(int ac, char **av)
 {
 	if (ac != 2)
 		return (KO);
-//	init_mlx();
+	init_mlx();
 	init_object();
 	read_map(av[1]);
-	check_cam();
-//	draw();
-	sleep(10);
+//	check_cam();
+	raytracer();
+	sleep(20);
 	return (OK);
 }

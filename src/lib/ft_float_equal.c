@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   float_equal.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
+/*   by: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/23 16:37:51 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/27 11:05:45 by ggilaber         ###   ########.fr       */
+/*   Created: 2015/11/27 09:13:45 by ggilaber          #+#    #+#             */
+/*   Updated: 2015/11/27 09:53:11 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytracer.h"
 
-void	ft_bzero(void *dst, size_t n)
+char	ft_float_equal(float a, float b)
 {
-	size_t	i;
-
-	if (!dst)
-		return;
-	i = 0;
-	while (i < n / 8)
-	{
-		*((long unsigned int*)dst + i) = (long unsigned int)0;
-		i += 8;
-	}
-	while (i < n)
-	{
-		((char*)dst)[i] = (char)0;
-		++i;
-	}
-	return;
+	float diff;
+	float largest;
+	
+	diff = fabs(a - b);
+	a = fabs(a);
+	b = fabs(b);
+	largest = (b > a) ? b : a;
+	if (diff <= largest * FLT_EPSILON)
+	    return OK;
+	return KO;
 }

@@ -1,39 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raytracer.c                                        :+:      :+:    :+:   */
+/*   cross_vect.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/26 08:24:26 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/27 10:36:41 by ggilaber         ###   ########.fr       */
+/*   Created: 2015/11/27 07:44:23 by ggilaber          #+#    #+#             */
+/*   Updated: 2015/11/27 10:19:09 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytracer.h"
-#include <string.h>
 
-void		init_step(t_vect step[2])
+void	cross_prod(t_vect u, t_vect v, t_vect buf)
 {
-	(void)step;
-}
-
-void		raytracer(void)
-{
-	int		i;
-	int		j;
-	t_vect	step[2];
-	t_ray	ray;
-
-	ft_memcpy(&ray, &g_cam, sizeof(t_point));
-	init_step(step);
-	j = -1;
-	while (++j < IM_HEIGHT)
-	{
-		i = -1;
-		while (++i < IM_WIDTH)
-		{
-		}
-	}
-//	mlx_put_image_to_window(g_env.mlx, g_env.win, g_env.img.img, 0, 0);
+	buf[X] = u[Y] * v[Z] - u[Z] * v[Y];
+	buf[Y] = u[Z] * v[X] - u[X] * v[Z];
+	buf[Z] = u[X] * v[Y] - u[Y] * v[X];
 }

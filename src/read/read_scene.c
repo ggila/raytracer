@@ -6,7 +6,7 @@
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 16:39:51 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/26 12:34:30 by ggilaber         ###   ########.fr       */
+/*   Updated: 2015/11/27 07:32:03 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void		read_error(void)
 	exit(KO);
 }
 
-static void	setup_cam(int fd)
+static void	setup_cam(const int fd)
 {
 	char	buf[5];
 
@@ -28,12 +28,12 @@ static void	setup_cam(int fd)
 		read_error();
 	read_pos(fd, (void*)g_cam.pos);
 	read_pos(fd, (void*)g_cam.dir);
-	g_cam.dir[W] = 1.0f;
+	g_cam.dir[W] = 0.0f;
 	if ((read(fd, buf, 2) == -1 ) || ft_strncmp(buf, "\n\n", 2))
 		read_error();
 }
 
-char		read_map(char *str)
+char		read_map(const char * const str)
 {
 	int				fd;
 
