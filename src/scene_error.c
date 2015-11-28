@@ -6,7 +6,7 @@
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/27 11:50:28 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/27 17:22:20 by ggilaber         ###   ########.fr       */
+/*   Updated: 2015/11/28 11:14:48 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ void		scene_error(int type, int line)
 		write(1, b, 2);
 		write(1, " :", 2);
 	}
-	write(1, g_errno[type].msg, g_errno[type].len);
+	ft_errno(type);
 	exit(KO);
 }

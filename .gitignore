@@ -1,5 +1,5 @@
 raytracer
 *.o
-.*.swp
+.*.sw[op]
 obj
 *.a
