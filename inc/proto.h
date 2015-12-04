@@ -6,7 +6,7 @@
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 12:01:24 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/24 12:02:03 by ggilaber         ###   ########.fr       */
+/*   Updated: 2015/12/04 09:34:31 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	ft_bzero(void *dst, size_t n);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_isdigit(int c);
 char	ft_float_equal(float a, float b);
+void	ft_errno(int type, int line, char flag);
+void	ft_putnbr(int n);
 
 /*
 ** src/vector

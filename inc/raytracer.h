@@ -6,7 +6,7 @@
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 08:16:01 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/28 10:45:13 by ggilaber         ###   ########.fr       */
+/*   Updated: 2015/12/04 09:47:53 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@
 
 # define OK 0
 # define KO 1
+
+# define FATAL 0
+# define WARNING 1
 
 # define TITLE "ggilaber"
 # define READ_ERROR "can't read this scene\n"

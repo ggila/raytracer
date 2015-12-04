@@ -7,3 +7,4 @@ END_OBJ -> too many stuffs for describe this object
 CAM_END -> expected blank line between cam and object
 WRONG_TRIPLE -> wrong format, expected three float separated with comma
 CAM_IDENTIFIER -> file must begin with camera definition ("100|...")
+SCREEN_CAM -> camera should look straight to the screen

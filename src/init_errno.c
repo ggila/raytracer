@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raytracer.h"
+#include "error.h"
 
 void	init_errno(void)
 {
@@ -32,4 +32,6 @@ void	init_errno(void)
 	g_errno[WRONG_TRIPLE].len = WRONG_TRIPLE_LEN;
 	g_errno[CAM_IDENTIFIER].msg = CAM_IDENTIFIER_MSG;
 	g_errno[CAM_IDENTIFIER].len = CAM_IDENTIFIER_LEN;
+	g_errno[SCREEN_CAM].msg = SCREEN_CAM_MSG;
+	g_errno[SCREEN_CAM].len = SCREEN_CAM_LEN;
 }

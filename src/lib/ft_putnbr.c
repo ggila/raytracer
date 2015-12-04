@@ -1,30 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scene_error.c                                      :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/27 11:50:28 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/28 11:14:48 by ggilaber         ###   ########.fr       */
+/*   Created: 2015/12/04 08:31:43 by ggilaber          #+#    #+#             */
+/*   Updated: 2015/12/04 10:58:13 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raytracer.h"
+#include "unistd.h"
 
-void		scene_error(int type, int line)
+void	ft_fill_buf(int n, char *str)
 {
-	char	b[2];
-
-	write(1, READ_ERROR, 22);
-	if (line > 0)
+	if (n > 9)
 	{
-		write(1, "line ", 5);
-		b[0] = line / 10 - '0';
-		b[1] = line % 10 - '0';
-		write(1, b, 2);
-		write(1, " :", 2);
+		ft_fill_buf(n / 10, str);
+		*str++ = '0' + (n % 10);
 	}
-	ft_errno(type);
-	exit(KO);
+	else
+		*str++ = '0' + n;
+}
+
+void	ft_putnbr(int n)
+{
+	char	buf[11];
+	char	*str;
+
+	if (n == -2147483648)
+	{
+		write(1, "-2147483648", 11);
+		return;
+	}
+	str = buf;
+	if (n < 0)
+	{
+		*str++ = '-';
+		n *= -1;
+	}
+	ft_fill_buf(n, str);
+	write(1, buf, ++str - buf);
 }

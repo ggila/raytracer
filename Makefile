@@ -27,7 +27,9 @@ LIB_FILE = lib/ft_bzero.c\
 		   lib/ft_isdigit.c\
 		   lib/ft_strncmp.c\
 		   lib/ft_memcpy.c\
-		   lib/ft_float_equal.c
+		   lib/ft_float_equal.c\
+		   lib/ft_errno.c\
+		   lib/ft_putnbr.c
 
 MATRIX_FILE = matrix/add.c\
 				matrix/dot_mat.c\
@@ -48,9 +50,7 @@ READ_FILE = read/read_scene.c\
 
 OTHER_FILE = main.c\
 			raytracer.c\
-			init_errno.c\
-			scene_error.c
-#			check_scene.c
+			check_scene.c
 
 C_FILE = $(LIB_FILE) $(MATRIX_FILE) $(VECTOR_FILE) \
 		 $(READ_FILE) $(OTHER_FILE)

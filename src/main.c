@@ -6,7 +6,7 @@
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 08:14:45 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/27 11:41:10 by ggilaber         ###   ########.fr       */
+/*   Updated: 2015/12/04 11:38:55 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,10 @@ int			main(int ac, char **av)
 {
 	if (ac != 2)
 		return (KO);
-	init_mlx();
+//	init_mlx();
 	init_object();
 	read_map(av[1]);
 	check_scene();
-	raytracer();
-	sleep(20);
+//	raytracer();
 	return (OK);
 }

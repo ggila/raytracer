@@ -6,7 +6,7 @@
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 17:34:01 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/11/27 17:13:02 by ggilaber         ###   ########.fr       */
+/*   Updated: 2015/12/04 10:38:00 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	read_number(const int fd, const char end, int *n, char *flag)
 		else
 		{
 			if ((!ft_isdigit(b) && (b != end)))
-				scene_error(WRONG_TRIPLE, g_line);
+				ft_errno(WRONG_TRIPLE, g_line, FATAL);
 			if (b == end)
 				break;
 			res += (b - '0');

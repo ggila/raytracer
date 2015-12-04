@@ -13,13 +13,15 @@
 #ifndef ERROR_H
 # define ERROR_H
 
-#define OPEN 0
-#define READ 1
-#define MISSING_TOKEN 2
-#define UKNOWN_SHAPE 3
-#define NB_OBJECT 4
-#define END_OBJ 5
-#define CAM_END 6
-#define WRONG_TRIPLE 7
-#define CAM_IDENTIFIER 8
+# define OPEN 0
+# define READ 1
+# define MISSING_TOKEN 2
+# define UKNOWN_SHAPE 3
+# define NB_OBJECT 4
+# define END_OBJ 5
+# define CAM_END 6
+# define WRONG_TRIPLE 7
+# define CAM_IDENTIFIER 8
+# define SCREEN_CAM 9
+
 #endif
