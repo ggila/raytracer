@@ -41,6 +41,9 @@ VECTOR_FILE = vector/mat_vect.c\
 			  vector/new_vect.c\
 			  vector/print_vect.c\
 			  vector/scalar_prod.c\
+			  vector/norm_vect.c\
+			  vector/dot_vect.c\
+			  vector/add_vect.c\
 			  vector/cross_prod.c
 
 READ_FILE = read/read_scene.c\

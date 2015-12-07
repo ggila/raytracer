@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_scene.c                                      :+:      :+:    :+:   */
+/*   om_vect.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/27 11:41:26 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/12/07 10:39:31 by ggilaber         ###   ########.fr       */
+/*   Created: 2015/12/07 07:18:20 by ggilaber          #+#    #+#             */
+/*   Updated: 2015/12/07 08:21:14 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytracer.h"
 
-void	check_scene(void)
+void	om_vect(const t_point o, const t_point m, t_vect om)
 {
-	if (ft_float_equal(scalar_prod(g_cam.dir, g_cam.screen), 0.0f) == KO)
-		ft_errno(SCREEN_CAM, -1, FATAL);
+	int	i
+
+	ft_bzero(om, VECT_SIZE);
+	i = -1;
+	while (++i < 4)
+		om[i] = m[i] - o[i];
 }

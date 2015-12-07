@@ -6,7 +6,7 @@
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 08:16:01 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/12/04 09:47:53 by ggilaber         ###   ########.fr       */
+/*   Updated: 2015/12/07 11:29:52 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@
 # define PI 3.1415926535
 # define FLT_EPSILON 1.1920929e-07f
 
-# define IM_WIDTH 1000
-# define IM_HEIGHT 1000
+# define IM_WIDTH 800
+# define IM_HEIGHT 600
 # define SCREEN_WIDTH 4.0
 # define SCREEN_HEIGHT 400
 
@@ -81,7 +81,7 @@ typedef struct	s_ray
 {
 	t_point		pos;
 	t_vect		vect;
-	char		rebond;
+	int			color;
 }				t_ray;
 
 typedef struct	s_camera

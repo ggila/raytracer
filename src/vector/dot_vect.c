@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_scene.c                                      :+:      :+:    :+:   */
+/*   dot_vect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/27 11:41:26 by ggilaber          #+#    #+#             */
-/*   Updated: 2015/12/07 10:39:31 by ggilaber         ###   ########.fr       */
+/*   Created: 2015/12/07 07:35:31 by ggilaber          #+#    #+#             */
+/*   Updated: 2015/12/07 09:27:11 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytracer.h"
 
-void	check_scene(void)
+void	dot_vect(const float m, t_vect vect, t_vect buf)
 {
-	if (ft_float_equal(scalar_prod(g_cam.dir, g_cam.screen), 0.0f) == KO)
-		ft_errno(SCREEN_CAM, -1, FATAL);
+	float	*res;
+	int		i;
+
+	res = (buf == NULL) ? vect : buf;
+	i = -1;
+	while (++i < 4)
+		res[i] = m * vect[i];
 }
