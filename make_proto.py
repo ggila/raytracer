@@ -1,20 +1,21 @@
-import os
 #!/usr/bin/python
 
+import os
 import re
 from subprocess import call
 
 if not (os.path.exists("./src")):
-    print "please change dir"
+    print "need src dir"
     exit(0)
 
+pName = os.path.split(os.getcwd())[1]
 
-func = []
+inc = []
 
-def handleProto(elem, rep):
-    global func
+def handleProto(elem, rep, func):
     if "static" in elem: return
     if "\tmain" in elem: return
+    if elem[0] in ' \t': return
     l = elem.split('\t')
     l = [elem for elem in l if len(elem)]
     if len(l) != 2:
@@ -25,34 +26,30 @@ def handleProto(elem, rep):
 
 pattern = '(?:^|\n)(?!static)([^\n]+)\n{\n'
 
-def getProto(filename, rep):
-    global func
+def getProto(filename, rep, func):
     with open(filename, "r") as f:
         r = re.findall(pattern, f.read())
         if not r: return
-        for elem in r: handleProto(elem, rep)
+        for elem in r: handleProto(elem, rep, func)
 
-def getDir(rep):
-    global func
-    for f in os.listdir(rep):
-        if not os.path.isdir(rep + "/" + f) and f[0] != '.':
-            getProto(rep + "/" + f, rep[2:])
-    for f in os.listdir(rep):
-        if os.path.isdir(rep + "/" + f) and f[0] != '.':
-            getDir(rep + "/" + f)
+def getDir(rep, func):
+    global inc
+    for root, dirs, files in os.walk(rep):
+        files = [f for f in files if f[0] != '.']
+        for d in dirs:
+            for f in os.listdir(os.path.join(root, d)):
+                if f[-2:] == '.h':
+                    dirs.remove(d)
+                    makeProto(os.path.join(root, d), os.path.join(root, d, f))
+                    inc.append(os.path.join(root[2:], d))
+        for f in files:
+            getProto(os.path.join(root, f), root, func)
 
-def countTab(string):
-    global m
+def countTab(string, m):
     nb_tab = (m - 1) / 4 + 1
-    return nb_tab - len(string) / 4
+    return max(1, nb_tab - len(string) / 4)
 
-getDir("./src")
-l = [a for a, _, _ in func]
-
-m = max(map(len, l))
-
-def printProto(f):
-    global func
+def printProto(f, func, m):
     cur_dir = ""
     for t, r, d in func:
         if d != cur_dir:
@@ -61,28 +58,29 @@ def printProto(f):
             f.write("\n*/\n\n")
             cur_dir = d
         f.write(t)
-        f.write('\t' * countTab(t))
+        f.write('\t' * countTab(t, m))
         f.write(r)
         f.write(";\n")
 
-header =\
-"/* ************************************************************************** */\n"\
-"/*                                                                            */\n"\
-"/*                                                        :::      ::::::::   */\n"\
-"/*   proto.h                                            :+:      :+:    :+:   */\n"\
-"/*                                                    +:+ +:+         +:+     */\n"\
-"/*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */\n"\
-"/*                                                +#+#+#+#+#+   +#+           */\n"\
-"/*   Created: 2015/12/07 09:23:42 by ggilaber          #+#    #+#             */\n"\
-"/*   Updated: 2015/12/07 09:23:42 by ggilaber         ###   ########.fr       */\n"\
-"/*                                                                            */\n"\
-"/* ************************************************************************** */\n\n"
+def makeProto(src, inc):
+    func = []
+    getDir(src, func)
+    l = [a for a, _, _ in func]
+    m = max(map(len, l))
+    with open(inc, "r") as f:
+        beginning = f.read().split('** Proto')[0]
+    with open(inc, 'w') as f:
+        f.write(beginning)
+        f.write('** Proto\n*/\n')
+        printProto(f, func, m)
+        f.write('\n#endif\n')
 
-with open("./inc/proto.h", "w") as f:
-    f.write(header)
-    f.write("#ifndef PROTO_H\n# define PROTO_H\n")
-    printProto(f)
-    f.write("\n#endif\n")
-f.close()
+makeProto('./src', pName + '.h')
 
-call(["norminette", "inc/proto.h"])
+with open('.project/incdir', 'w') as f:
+    for l in inc:
+        f.write('{0}\n'.format(l))
+
+if call(['which', 'norminette']) == 0:
+    call(["norminette", "inc/proto.h"])
+else: print 'can\'t check norm'

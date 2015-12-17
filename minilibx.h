@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   minilibx.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggilaber <ggilaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,21 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-# define ERROR_H
+#ifndef MINILIBX_H
+# define MINILIBX_H
 
-# define FATAL 0
-# define WARNING 1
+# define TITLE "ggilaber"
+# define READ_ERROR "can't read this scene\n"
 
-# define OPEN 0
-# define READ 1
-# define MISSING_TOKEN 2
-# define UKNOWN_SHAPE 3
-# define NB_OBJECT 4
-# define END_OBJ 5
-# define CAM_END 6
-# define WRONG_TRIPLE 7
-# define CAM_IDENTIFIER 8
-# define SCREEN_CAM 9
+# define IM_WIDTH 800
+# define IM_HEIGHT 600
 
 #endif
