@@ -119,4 +119,41 @@ t_env			g_env;
 ** Proto
 */
 
+/*
+** ./src
+*/
+
+void	init_errno(void);
+void	init_mlx(void);
+void	check_scene(void);
+void	raytracer(void);
+
+/*
+** ./src/lib
+*/
+
+void	ft_bzero(void *dst, size_t n);
+char	ft_float_equal(float a, float b);
+void	ft_errno(int type, int line, char flag);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+int		ft_isdigit(int c);
+void	ft_fill_buf(int n, char *str);
+void	ft_putnbr(int n);
+void	ft_memcpy(void *dst, void *src, size_t n);
+
+/*
+** ./src/read
+*/
+
+char	read_map(const char * const str);
+int		read_one(int fd, char *b);
+void	read_objects(const int fd);
+int		read_number(const int fd, const char end, int *n, char *flag);
+float	read_float(const int fd, const char end);
+void	read_pos(const int fd, const void *addr);
+void	read_plan(const int fd, union u_o *const u);
+void	read_sphere(const int fd, union u_o *const u);
+void	read_cylindre(const int fd, union u_o *const u);
+void	read_cone(const int fd, union u_o *const u);
+
 #endif

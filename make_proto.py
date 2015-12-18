@@ -36,11 +36,14 @@ def getDir(rep, func):
     global inc
     for root, dirs, files in os.walk(rep):
         files = [f for f in files if f[0] != '.']
+        dirs[:] = [d for d in dirs if d[0] != '.']
         for d in dirs:
             for f in os.listdir(os.path.join(root, d)):
                 if f[-2:] == '.h':
                     dirs.remove(d)
                     makeProto(os.path.join(root, d), os.path.join(root, d, f))
+                    if not os.path.lexists('inc/' + f):
+                        call(["ln", "-s", os.path.join(root, d, f), "inc/" + f])
                     inc.append(os.path.join(root[2:], d))
         for f in files:
             getProto(os.path.join(root, f), root, func)
@@ -75,7 +78,7 @@ def makeProto(src, inc):
         printProto(f, func, m)
         f.write('\n#endif\n')
 
-makeProto('./src', pName + '.h')
+makeProto('./src', "inc/" +  pName + '.h')
 
 with open('.project/incdir', 'w') as f:
     for l in inc:
@@ -83,4 +86,4 @@ with open('.project/incdir', 'w') as f:
 
 if call(['which', 'norminette']) == 0:
     call(["norminette", "inc/proto.h"])
-else: print 'can\'t check norm'
+else: print 'norminette unavailable'

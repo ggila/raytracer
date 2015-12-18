@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raytracer.h"
+#include "matrix.h"
 
 static float	matrix_dot(t_mat lhs, t_mat rhs, int i, int j)
 {

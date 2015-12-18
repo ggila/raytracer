@@ -24,16 +24,11 @@
 # include "matrix.h"
 # include "vector.h"
 
-#				include "stdio.h"
-
 # define OK 0
 # define KO 1
 
 # define PI 3.1415926535
 # define FLT_EPSILON 1.1920929e-07f
-
-//# define SCREEN_WIDTH 4.0
-//# define SCREEN_HEIGHT 400
 
 # define PLAN 0
 # define SPHERE 1
@@ -42,7 +37,7 @@
 
 # define ABS(n) (((n) > 0) ? (n) : -(n))
 
-# define MASK			1U
+# define MASK 1U
 
 typedef struct	s_env
 {

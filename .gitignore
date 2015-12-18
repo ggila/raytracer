@@ -3,3 +3,4 @@ raytracer
 .*.sw[op]
 obj
 *.a
+*.h.gch
