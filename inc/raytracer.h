@@ -145,7 +145,7 @@ void	ft_memcpy(void *dst, void *src, size_t n);
 ** ./src/read
 */
 
-char	read_map(const char * const str);
+char	read_map(const char *const str);
 int		read_one(int fd, char *b);
 void	read_objects(const int fd);
 int		read_number(const int fd, const char end, int *n, char *flag);
