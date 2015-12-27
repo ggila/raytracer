@@ -56,7 +56,7 @@ static void	draw_screen(t_point screen_pos, t_vect screen_dir[2])
 		{
 			add_vect(target_cpy, screen_dir[0], NULL);
 			om_vect(ray.pos, target_cpy, ray.dir);
-//			trhow_ray(ray);
+//			throw_ray(ray);
 			g_env.data[j * g_env.dataline + j] = &ray.color;
 		}
 	}

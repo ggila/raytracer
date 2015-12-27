@@ -35,7 +35,7 @@ static void	setup_cam(const int fd)
 		ft_errno(CAM_END, g_line, FATAL);
 }
 
-char		read_map(const char * const str)
+char		read_map(const char *const str)
 {
 	int				fd;
 
