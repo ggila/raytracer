@@ -1,8 +1,3 @@
-// raytracer.c
-// ggilaber <ggilaber@student.42.fr>
-// 2015/11/26 08:24:26 by ggilaber
-// 2015/12/28 20:06:18 by ggilaber
-
 #include "raytracer.h"
 #include <string.h>
 

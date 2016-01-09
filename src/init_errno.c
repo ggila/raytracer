@@ -1,8 +1,3 @@
-// error.c
-// ggilaber <ggilaber@student.42.fr>
-// 2015/11/24 12:01:24 by ggilaber
-// 2015/12/28 20:06:20 by ggilaber
-
 #include "error.h"
 
 void	init_errno(void)

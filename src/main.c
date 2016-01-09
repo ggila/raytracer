@@ -1,12 +1,6 @@
-// main.c
-// ggilaber <ggilaber@student.42.fr>
-// 2015/11/23 08:14:45 by ggilaber
-// 2015/12/28 20:06:15 by ggilaber
-
 #include "raytracer.h"
 
-//static void	init_mlx(void)
-void	init_mlx(void)
+static void	init_mlx(void)
 {
 	int	endian;
 
@@ -32,7 +26,6 @@ static void		init_object(void)
 		g_obj[i].type = -1;
 }
 
-//int			main(void)
 int			main(int ac, char **av)
 {
 	if (ac != 2)
